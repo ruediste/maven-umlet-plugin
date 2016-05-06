@@ -74,6 +74,8 @@ public class ExportDiagramsMojo extends AbstractMojo {
     private void queueTasks(File modelDir, ExecutorService executor, ArrayList<ExportTask> tasks) {
         if (modelDir == null)
             return;
+        if (!modelDir.exists())
+            return;
         Scanner scanner = buildContext.newScanner(modelDir);
         scanner.setIncludes(new String[] { "**/*.uxf" });
         scanner.scan();
